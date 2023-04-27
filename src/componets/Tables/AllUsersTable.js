@@ -1,8 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Table from 'react-bootstrap/Table';
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
+import DeleteUserModal from "../Modals/DeleteUserModal";
 
 const AllUsersTable = ({ data, columns }) => {
     const navigate = useNavigate();
@@ -31,16 +33,16 @@ const AllUsersTable = ({ data, columns }) => {
                     <td style={{textDecoration:'underline'}}>{row.points}</td>
                     <td className="d-flex align-items-center">
                         <span style={{color:`${row.status==='Online'?'#35CC5F':'#000'}`}}>{row.status}</span>
-                        <Dropdown>
+                        <StyledDropdown>
                           <Dropdown.Toggle variant="" id="dropdown-basic">
                             <i className="icon" ><BiDotsVerticalRounded /></i>
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
                             <Dropdown.Item onClick={()=>navigate('/users/1') } >User Details</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2" style={{color:'red'}} >Delete</Dropdown.Item>
+                            <Dropdown.Item><DeleteUserModal avatar={row.image} data={row} /></Dropdown.Item>
                           </Dropdown.Menu>
-                        </Dropdown>
+                        </StyledDropdown>
                     </td>
                 </tr>
               ))
@@ -51,3 +53,9 @@ const AllUsersTable = ({ data, columns }) => {
 }
 
 export default AllUsersTable;
+
+const StyledDropdown = styled(Dropdown)`
+    .dropdown-toggle::after {
+        display: none;
+    }
+`;

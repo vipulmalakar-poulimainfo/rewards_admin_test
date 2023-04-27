@@ -19,11 +19,11 @@ const VPNCard = ({name, flag, date, lastActive, timeRange, ads, points, dataUsed
                 <span>{date}</span>
             </HorizontalContainer>
             <VerticalContainer className="align-items-center gap-4">
-                <HorizontalContainer className="gap-5">
+                <HorizontalContainer className="gap-5 flex-wrap">
                     <VPNData src={Clock} title={'Time range'} value={timeRange} />
                     <VPNData src={Computer} title={'No.of Ads'} value={ads} />
                 </HorizontalContainer>
-                <HorizontalContainer className="gap-5">
+                <HorizontalContainer className="gap-5 flex-wrap">
                     <VPNData src={Badge} title={'Points earned'} value={points} />
                     <VPNData src={Stats} title={'Data Used'} value={dataUsed} />
                 </HorizontalContainer>

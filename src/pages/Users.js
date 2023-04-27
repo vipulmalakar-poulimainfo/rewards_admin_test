@@ -175,7 +175,7 @@ const Users = () => {
                         <Select className="form-select"><option value="1">All Categories</option></Select>
                         <Select className="form-select"><option value="1">All Locations</option></Select>
                     </HorizontalContainer>
-                    <Search />
+                    <Search placeholder={'Search Users'} />
                 </HorizontalContainer>
             </VerticalContainer>
             <VerticalContainer className="gap-4 p-3 rounded-3" style={{backgroundColor:'#fff'}}>

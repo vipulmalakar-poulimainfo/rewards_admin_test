@@ -7,11 +7,11 @@ import Internet from '../../../assets/icons/Group 357.png'
 const Box1 = () => {
     return (
         <Container>
-            <HorizontalContainer className="gap-4">
+            <div className="d-flex gap-4 flex-wrap">
                 <BoxComponent title={'No. of Ads Watched'} value={457} icon={<HiOutlineDesktopComputer style={{color:'#FE3EAA'}} />} />
                 <BoxComponent title={'No. of Points Earned'} value={4500} src={Coin} />
                 <BoxComponent title={'Total No. of VPN Used'} value={9} src={Internet} />
-            </HorizontalContainer>
+            </div>
         </Container>
     );
 }
@@ -38,18 +38,6 @@ const BoxComponent = ({title, value, icon, src}) => {
     );
 }
 
-const HorizontalContainer = styled.div`
-    display: flex;
-`;
-const VerticalContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-const UserDetailsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-`;
 const Container = styled.div`
     background-color: #fff;
     border-radius: 5px;

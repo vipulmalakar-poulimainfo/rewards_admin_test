@@ -2,11 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { FaUsers } from 'react-icons/fa';
 import { AiOutlineArrowUp } from 'react-icons/ai';
-import img1 from '../assets/Group 44.svg';
-import img2 from '../assets/Group 387.svg';
-import img3 from '../assets/Group 388.svg';
-import img4 from '../assets/Group 389.svg';
-import img5 from '../assets/Group 390.svg';
 import india from '../assets/countries/india 1.svg';
 import usa from '../assets/countries/united-states-of-america 1.svg';
 import singapore from '../assets/countries/singapore 1.svg';
@@ -22,6 +17,8 @@ import User5 from '../assets/users/Ellipse 114.png';
 import User6 from '../assets/users/Ellipse 115.png';
 import User7 from '../assets/users/Ellipse 116.png';
 import User8 from '../assets/users/Ellipse 163.png';
+import { ProgressBar } from "react-bootstrap";
+import UserAgePreference from "../componets/Dashboard/UserAgePreferences";
 
 const Users = [
     {
@@ -232,7 +229,7 @@ const Box1 = ({heading, data}) => {
     return (
         <BoxContainer>
             <h4 className="fw-bold">{heading}</h4>
-            <HorizontalContainer className="gap-4 justify-content-between flex-wrap">
+            <HorizontalContainer className="gap-4 justify-content-center flex-wrap">
                 {
                     data?.map((item, index) => {
                         return <Box2 key={index} title={item.title} count={item.count} icon={item.icon} change={item.change} />
@@ -260,45 +257,6 @@ const Box2 = ({title, count, change, icon}) => {
     );
 }
 
-const UserAgePreference = () => {
-    return (
-        <BoxContainer>
-            <h4 className="fw-bold">Users  Age Preferences</h4>
-            <HorizontalContainer className="gap-5 justify-content-between align-items-center">
-                <img src={img1} alt="img1" />
-                <div className="d-flex flex-wrap justify-content-center gap-5">
-                    <img src={img2} alt="img1" />
-                    <img src={img3} alt="img1" />
-                    <img src={img4} alt="img1" />
-                    <img src={img5} alt="img1" />
-                </div>
-            </HorizontalContainer>
-            <div className="d-flex flex-wrap justify-content-between gap-4">
-                <div className="d-flex align-items-center gap-2">
-                    <div className="rounded-circle" style={{backgroundColor:'#182E67', width:'10px',height:'10px'}}></div>
-                    <span>Above 30 age</span>
-                </div>
-                <div className="d-flex align-items-center gap-2">
-                    <div className="rounded-circle" style={{backgroundColor:'#42C595', width:'10px',height:'10px'}}></div>
-                    <span>Teenagers</span>
-                </div>
-                <div className="d-flex align-items-center gap-2">
-                    <div className="rounded-circle" style={{backgroundColor:'#855079', width:'10px',height:'10px'}}></div>
-                    <span>Above 45 age</span>
-                </div>
-                <div className="d-flex align-items-center gap-2">
-                    <div className="rounded-circle" style={{backgroundColor:'#B7C07B', width:'10px',height:'10px'}}></div>
-                    <span>Above 60</span>
-                </div>
-                <div className="d-flex align-items-center gap-2">
-                    <div className="rounded-circle" style={{backgroundColor:'#50A2FF', width:'10px',height:'10px'}}></div>
-                    <span>Upto 30 age</span>
-                </div>
-            </div>
-        </BoxContainer>
-    );
-}
-
 const GeographicalAreas = () => {
     return (
         <BoxContainer>
@@ -322,21 +280,13 @@ const Country = ({name, count, flag}) => {
         <VerticalContainer className="gap-1">
             <HorizontalContainer className="justify-content-between align-items-center gap-4">
                 <HorizontalContainer className="align-items-center gap-2">
-                    <img src={flag} alt={name} />
+                    <img src={flag} alt={name} style={{width:'2rem'}} />
                     <span className="fw-bold">{name}</span>
                 </HorizontalContainer>
                 <span className="fw-bold" style={{color:'#182E67'}}>{count}%</span>
             </HorizontalContainer>
-            <ProgressBar percentage={count} />
+            <ProgressBar variant="primary" now={count} style={{height:'10px'}} />
         </VerticalContainer>
-    );
-}
-
-const ProgressBar = ({percentage}) => {
-    return (
-        <div className="progress" style={{height:'10px', backgroundColor:'#D9D9D9'}}>
-            <div className="progress-bar" role="progressbar" style={{width: `${percentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
     );
 }
 

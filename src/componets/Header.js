@@ -5,8 +5,11 @@ import { MdDashboardCustomize } from 'react-icons/md';
 import { FaUsers, FaMoneyBillWave } from 'react-icons/fa';
 import { ImStatsDots } from 'react-icons/im';
 import { AiOutlineSetting, AiOutlineArrowUp } from 'react-icons/ai';
-import { HiOutlineDesktopComputer } from 'react-icons/hi';
+import { HiOutlineDesktopComputer, HiOutlineLogout } from 'react-icons/hi';
+import { BiEdit } from 'react-icons/bi';
 import { useNavigate } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import Avatar from '../assets/Avatar.png';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -36,17 +39,26 @@ const Header = () => {
                 <MiddleContainer>
                     <Option title={'Dashboard'} icon={<MdDashboardCustomize />} active={active} link={'/'} />
                     <Option title={'Users'} icon={<FaUsers />} active={active} link={'/users'} />
-                    <Option title={'Area Statistics'} icon={<ImStatsDots />} active={active} link={'/'} />
-                    <Option title={'Payout'} icon={<FaMoneyBillWave />} active={active} link={'/'} />
-                    <Option title={'Settings'} icon={<AiOutlineSetting />} active={active} link={'/'} />
+                    <Option title={'Area Statistics'} icon={<ImStatsDots />} active={active} link={'/statistics'} />
+                    <Option title={'Payout'} icon={<FaMoneyBillWave />} active={active} link={'/payout'} />
+                    <Option title={'Settings'} icon={<AiOutlineSetting />} active={active} link={'/settings'} />
                     <div className="d-flex align-items-center">
                         <i className="icon" style={{position:'absolute',marginLeft:'10px',marginBottom:'5px'}} ><FiSearch /></i>
                         <SearchInput className="rounded-5" placeholder="Search" />
                     </div>
                 </MiddleContainer>
-                <Profile>
-                    <div>User</div>
-                </Profile>
+                <StyledDropdown>
+                    <Dropdown.Toggle variant="" id="dropdown-basic">
+                        <Profile>
+                            <img src={Avatar} alt="Avatar" style={{width:'1.5rem'}} />
+                            <span>User</span>
+                        </Profile>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item ><BiEdit /> Edit Profile</Dropdown.Item>
+                        <Dropdown.Item><HiOutlineLogout /> Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                </StyledDropdown>
             </TopContainer>
             {
                 active === 'Dashboard' ? <>
@@ -55,7 +67,7 @@ const Header = () => {
                         <h3>Good Evening, User</h3>
                         <span>Let’s Check your stats today!</span>
                     </div>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between flex-wrap gap-4">
                         <BoxComponent title={'Available to Payout'} value={'$ 25,785.00'} />
                         <BoxComponent title={'No. of Users Connected'} value={'75k +'} icon={<FaUsers />} change={'9% Yesterday'} />
                         <BoxComponent title={'No. of Ads Shown'} value={'125'} icon={<HiOutlineDesktopComputer />} />
@@ -64,17 +76,32 @@ const Header = () => {
                 </> : <></>
             }
             {
-                active === 'Users' ? <>
-                    <div className="d-flex flex-column gap-1">
-                        <h3>User Management</h3>
+                active === 'Payout' ? <>
+                    <h3>Payout</h3>
+                    <div className="d-flex justify-content-between flex-wrap gap-4">
+                        <BoxComponent title={'No.of Users Paid'} value={'25,450'} icon={<FaMoneyBillWave />} />
+                        <BoxComponent title={'Pay out Pending Request'} value={'1250'} icon={<FaMoneyBillWave />} />
+                        <BoxComponent title={'Pay out Pending'} value={'210'} icon={<FaMoneyBillWave />} />
+                        <BoxComponent title={'Pay out Cancelled'} value={'123'} icon={<FaMoneyBillWave />} />
                     </div>
-                    <div className="d-flex justify-content-between">
+                </> : <></>
+            }
+            {
+                active === 'Area Statistics' ?<h3>Geographical Area Statistics</h3>: <></>
+            }
+            {
+                active === 'Users' ? <>
+                    <h3>Payout</h3>
+                    <div className="d-flex justify-content-between flex-wrap gap-4">
                         <BoxComponent title={'Total No. of Users'} value={'58k +'} icon={<FaUsers />} />
                         <BoxComponent title={'Total No. of Active Users'} value={'1250'} icon={<FaUsers />} change={'9% Yesterday'} />
                         <BoxComponent title={'Newly Registered Users'} value={'1600'} icon={<FaUsers />} />
                         <BoxComponent title={'No. of Ads Shown'} value={'1200'} icon={<HiOutlineDesktopComputer />} />
                     </div>
                 </> : <></>
+            }
+            {
+                active === 'Settings' ? <><h3>Settings</h3></> : <></>
             }
         </HeaderContainer>
     );
@@ -96,6 +123,18 @@ const BoxComponent = ({title, value, icon, change}) => {
                 <i style={{fontSize:'2.5rem'}}>{icon}</i>
             </div>
         </BoxContainer>
+    );
+}
+
+const Option = ({icon, title, active, link}) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+    }, [active]);
+    return (
+        <OptionContainer active={active} title={title} onClick={()=>navigate(link)} >
+            <i style={{fontSize:'20px'}}>{icon}</i>
+            <span className="fw-bold">{title}</span>
+        </OptionContainer>
     );
 }
 
@@ -137,6 +176,9 @@ const SearchInput = styled.input`
 `;
 const Profile = styled.div`
     display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
 `;
 
 const OptionContainer = styled.div`
@@ -161,15 +203,12 @@ const BoxContainer = styled.div`
     width: 300px;
     border: 1px solid #fff;
 `;
-
-const Option = ({icon, title, active, link}) => {
-    const navigate = useNavigate();
-    useEffect(() => {
-    }, [active]);
-    return (
-        <OptionContainer active={active} title={title} onClick={()=>navigate(link)} >
-            <i style={{fontSize:'20px'}}>{icon}</i>
-            <span className="fw-bold">{title}</span>
-        </OptionContainer>
-    );
-}
+const StyledDropdown = styled(Dropdown)`
+    .dropdown-toggle::after {
+        display: none;
+    }
+    .dropdown-item {
+        color: rgba(44, 35, 100, 0.8);
+        font-weight: 500;
+    }
+`;

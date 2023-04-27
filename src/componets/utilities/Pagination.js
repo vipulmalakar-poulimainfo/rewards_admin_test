@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-function Items({ currentItems, columns, Table }) {
+function Items({ currentItems, columns, Table, func }) {
   return (
     <>
-      <Table data={currentItems} columns={columns} />
+      <Table data={currentItems} columns={columns} func={func} />
     </>
   );
 }
 
-function Pagination({ data, itemsPerPage, columns, Table }) {
+function Pagination({ data, itemsPerPage, columns, Table, func }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0); // Simulate fetching items from another resources. // (This could be items from props; or items loaded in a local state // from an API endpoint with useEffect and useState)
@@ -29,8 +29,9 @@ function Pagination({ data, itemsPerPage, columns, Table }) {
         currentItems={currentItems}
         columns={columns}
         Table={Table}
+        func={func}
       />
-      <div className="mt-5 d-flex justify-content-center">
+      <div className="m-auto position-relative" style={{zIndex:'0'}}>
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}

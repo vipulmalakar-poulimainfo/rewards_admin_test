@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 
-const Search = () => {
+const Search = ({placeholder, func}) => {
+    const [search, setSearch] = React.useState('');
     return (
         <div className="d-flex align-items-center">
             <i className="icon" style={{position:'absolute',marginLeft:'10px',marginBottom:'5px'}} ><FiSearch /></i>
-            <SearchInput className="rounded-5" placeholder="Search" />
-            <button className="btn text-white rounded-5 px-4 position-absolute" style={{backgroundColor:'#040980',right:'20px'}} type="button" id="button-addon2">Search</button>
+            <SearchInput className="rounded-5" placeholder={placeholder} onChange={(e) => setSearch(e.target.value)} />
+            <button onClick={()=>func(search)} className="btn text-white rounded-5 px-4 position-relative" style={{backgroundColor:'#040980',right:'2rem'}} type="button" id="button-addon2">Search</button>
         </div>
     )
 }

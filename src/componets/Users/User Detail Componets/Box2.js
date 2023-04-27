@@ -5,11 +5,11 @@ import { FaMoneyBillWave } from 'react-icons/fa';
 const Box2 = () => {
     return (
         <Container>
-            <HorizontalContainer className="gap-4">
+            <div className="d-flex gap-4 flex-wrap">
                 <BoxComponent title={'Total Cash Earned'} value={'$ 2000'} icon={<FaMoneyBillWave />} />
                 <BoxComponent title={'Cash withdrawn'} value={'$ 1200'} icon={<FaMoneyBillWave />} />
                 <BoxComponent title={'Available Balance'} value={'$ 800'} icon={<FaMoneyBillWave />} />
-            </HorizontalContainer>
+            </div>
         </Container>
     )
 }
@@ -36,9 +36,6 @@ const BoxComponent = ({title, value, icon, src}) => {
     );
 }
 
-const HorizontalContainer = styled.div`
-    display: flex;
-`;
 const Container = styled.div`
     background-color: #fff;
     border-radius: 5px;
