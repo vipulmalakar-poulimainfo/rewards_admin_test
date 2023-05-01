@@ -15,7 +15,7 @@ const Settings = () => {
                     active==='Account Settings'? 'Settings'
                     : active==='Threshold Management'? 'Threshold Management'
                     : active==='Access Right Management'? 'Access Right Management'
-                    : active==='Bank Details'? 'Bank Details'
+                    // : active==='Bank Details'? 'Bank Details'
                     : ''
                 }
             </h2>
@@ -24,13 +24,13 @@ const Settings = () => {
                     <span className="fw-bold p-2 pointer" style={{color:`${active==='Account Settings'?'':'#717B8C'}`, borderBottom:`${active==='Account Settings'?'3px solid':''}`}} onClick={()=>setActive('Account Settings')} >Account Settings</span>
                     <span className="fw-bold p-2 pointer" style={{color:`${active==='Threshold Management'?'':'#717B8C'}`, borderBottom:`${active==='Threshold Management'?'3px solid':''}`}} onClick={()=>setActive('Threshold Management')} >Threshold Management</span>
                     <span className="fw-bold p-2 pointer" style={{color:`${active==='Access Right Management'?'':'#717B8C'}`, borderBottom:`${active==='Access Right Management'?'3px solid':''}`}} onClick={()=>setActive('Access Right Management')} >Access Right Management</span>
-                    <span className="fw-bold p-2 pointer" style={{color:`${active==='Bank Details'?'':'#717B8C'}`, borderBottom:`${active==='Bank Details'?'3px solid':''}`}} onClick={()=>setActive('Bank Details')} >Bank Details</span>
+                    {/* <span className="fw-bold p-2 pointer" style={{color:`${active==='Bank Details'?'':'#717B8C'}`, borderBottom:`${active==='Bank Details'?'3px solid':''}`}} onClick={()=>setActive('Bank Details')} >Bank Details</span> */}
                 </StyledNavbar>
                 {
                     active==='Account Settings'? <AccountSettings></AccountSettings>
                     : active==='Threshold Management'? <ThresholdManagement />
                     : active==='Access Right Management'? <AccessRightManagement />
-                    : active==='Bank Details'? <BankDetails />
+                    // : active==='Bank Details'? <BankDetails />
                     : <></>
                 }
             </StyledContainer>

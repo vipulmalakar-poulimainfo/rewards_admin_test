@@ -27,6 +27,7 @@ const StyledCountryContainer = styled.div`
     flex-direction: column;
     gap: 1rem;
     background-color: ${props => props.isActive ? '#2641D1' : '#fff'};
+    color: ${props => props.isActive ? '#fff' : '#000'};
     padding: 10px 20px;
     border-radius: 5px;
 `;
